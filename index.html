@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator</title>
+</head>
+
+<body>
+    <main>
+        <!-- history button -->
+        <button>History</button>
+
+        <!-- input cont -->
+        <article>
+            <h1>Discount Calculator</h1>
+
+            <form>
+                <!-- original price container -->
+                <div>
+                    <!-- heading -->
+                    <div>
+                        <label for="price">Original Price <span>(£)</span></label>
+                        <select>
+                            <option disabled selected value="" id="price">(<span>£</span>) Change</option>
+                            <option value="£">£</option>
+                            <option value="$">$</option>
+                            <option value="₦">₦</option>
+                            <option value="₵">₵</option>
+                        </select>
+                    </div>
+
+                    <!-- input -->
+                    <div><span>£</span><input type="text"></div>
+                </div>
+
+                <!-- discount container -->
+                <div>
+                    <!-- heading -->
+                    <div>
+                        <label for="price">Discount (%)</label>
+                        <select>
+                            <option disabled selected value="" id="price">(<span>£</span>) Change</option>
+                            <option value="£">£</option>
+                            <option value="$">$</option>
+                            <option value="₦">₦</option>
+                            <option value="₵">₵</option>
+                        </select>
+                    </div>
+
+                    <!-- input -->
+                    <div><input type="text"><span>%</span></div>
+                </div>
+            </form>
+        </article>
+
+        <!-- output cont -->
+        <article>
+            <img src="" alt="">
+            <h2>No calculations yet!</h2>
+        </article>
+    </main>
+
+    <dialog>
+        <button>Close</button>
+
+        <h2>You searched:</h2>
+
+        <!-- history containers -->
+        <div>
+            <!-- history container  -->
+            <div>
+                <div>
+                    <p>20% off £29 which is £23.20</p>
+                    <p>Searched on: 10/15/2025</p>
+                </div>
+                <button>Delete</button>
+            </div>
+        </div>
+
+        <button>Clear</button>
+
+    </dialog>
+
+</body>
+
+</html>

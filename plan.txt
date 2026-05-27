@@ -1,0 +1,8 @@
+Write HTML and CSS
+
+1. Plan HTML
+2. Plan CSS
+3. Write HTML
+4. Write CSS with layout, size, style
+5. Make responsive
+6. Make interactive
