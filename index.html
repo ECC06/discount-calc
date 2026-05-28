@@ -5,12 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discount Calculator</title>
+    <script defer src="./javascript/index.js"></script>
+    <style>
+        main {
+            width: 80vw;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+        }
+
+        form>div:nth-last-child(-n+3) {
+            margin-top: 10px;
+        }
+
+        #history-button {
+            position: fixed;
+            right: 20px;
+        }
+
+        #output-container {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <main>
         <!-- history button -->
-        <button>History</button>
+        <button id="history-button">History</button>
 
         <!-- input cont -->
         <article>
@@ -21,9 +43,11 @@
                 <div>
                     <!-- heading -->
                     <div>
-                        <label for="price">Original Price <span>(£)</span></label>
-                        <select>
-                            <option disabled selected value="" id="price">(<span>£</span>) Change</option>
+                        <label id="price-label" for="price">Original Price (<span
+                                class="currency-sign">£</span>)</label>
+                        <select id="currency-dropdown" name="currency">
+                            <option id="default-option" disabled selected value="">(<span
+                                    class="currency-sign">£</span>) Change</option>
                             <option value="£">£</option>
                             <option value="$">$</option>
                             <option value="₦">₦</option>
@@ -32,54 +56,88 @@
                     </div>
 
                     <!-- input -->
-                    <div><span>£</span><input type="text"></div>
+                    <div><span class="currency-sign">£</span><input required id="price" type="number"></div>
                 </div>
 
                 <!-- discount container -->
                 <div>
                     <!-- heading -->
                     <div>
-                        <label for="price">Discount (%)</label>
-                        <select>
-                            <option disabled selected value="" id="price">(<span>£</span>) Change</option>
-                            <option value="£">£</option>
-                            <option value="$">$</option>
-                            <option value="₦">₦</option>
-                            <option value="₵">₵</option>
-                        </select>
+                        <label for="discount">Discount Percentage (%)</label>
                     </div>
 
                     <!-- input -->
-                    <div><input type="text"><span>%</span></div>
+                    <div><input required id="discount" type="number"><span>%</span></div>
+                </div>
+
+                <!-- buttons container -->
+                <div>
+                    <button type="submit">Calculate</button>
+                    <button id="clear-btn" type="reset">Clear</button>
                 </div>
             </form>
         </article>
 
         <!-- output cont -->
         <article>
-            <img src="" alt="">
-            <h2>No calculations yet!</h2>
+            <!-- no calculations container -->
+            <div id="no-calculations-cont">
+                <img src="" alt="man staring at calculator">
+                <h2>No calculations yet!</h2>
+            </div>
+
+            <!-- output container -->
+            <div id="output-container">
+                <div>
+                    <div>
+                        <h3>New Price</h3>
+                        <p>
+                            <span class="currency-sign">£</span>
+                            <span id="new-price"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <h3>Savings</h3>
+                        <p>
+                            <span class="currency-sign">£</span>
+                            <span id="savings"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </article>
     </main>
 
     <dialog>
         <button>Close</button>
 
-        <h2>You searched:</h2>
-
-        <!-- history containers -->
+        <!-- no history container -->
         <div>
-            <!-- history container  -->
-            <div>
-                <div>
-                    <p>20% off £29 which is £23.20</p>
-                    <p>Searched on: 10/15/2025</p>
-                </div>
-                <button>Delete</button>
-            </div>
+            <img src="" alt="">
+            <h2>No history yet!</h2>
         </div>
 
-        <button>Clear</button>
+        <!-- history container -->
+        <div>
+            <h2>You searched:</h2>
+
+            <!-- history containers -->
+            <div>
+                <!-- history container  -->
+                <div>
+                    <div>
+                        <p>20% off £29 which is £23.20</p>
+                        <p>Searched on: 10/15/2025</p>
+                    </div>
+                    <button>Delete</button>
+                </div>
+            </div>
+
+            <button>Clear</button>
+        </div>
 
     </dialog>
 
