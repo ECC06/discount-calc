@@ -1,4 +1,4 @@
-import { getHistoryFromLocalStorage, updateHistoryInHTML, historyConts } from "./re-used-functions.js";
+import { getHistoryFromLocalStorage, updateHistoryInHTML, historyConts, historyCont, showHistoryCont, noHistoryCont } from "./re-used-functions.js";
 
 const historyBtn = document.getElementById("history-btn");
 
@@ -15,32 +15,25 @@ const discountElem = document.getElementById("discount");
 const newPriceElem = document.getElementById("new-price");
 const savingsElem = document.getElementById("savings");
 
-const clearBtn = document.getElementById("clear-btn");
+const clearInputBtn = document.getElementById("clear-input-btn");
 
 const historyModal = document.getElementById("history-modal");
 const closeModalBtn = document.getElementById("close-modal-btn");
-const noHistoryCont = document.getElementById("no-history-cont");
-const historyCont = document.getElementById("history-cont");
+const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 let selectedCurrency = currencyDropdown.value || "£";
 
-//!RUNS ON PAGE LOAD
+//!UPDATE HISTORY MODAL'S HTML IF THERE'S HISTORY IN LOCAL STORAGE
 document.addEventListener("DOMContentLoaded", function (e) {
     if (getHistoryFromLocalStorage() !== null) {
         const historyArr = getHistoryFromLocalStorage();
 
+        //update HTML with history
         historyArr.forEach((obj) => {
-            updateHistoryInHTML(
-                obj.discountPercentage,
-                obj.originalPrice,
-                obj.discount
-            )
+            updateHistoryInHTML(obj)
         });
 
-        //display history containers in HTML
-        noHistoryCont.classList.add("display-none");
-        historyCont.classList.remove("display-none");
-
+        showHistoryCont();
     }
 });
 
@@ -58,9 +51,19 @@ form.addEventListener("submit", function (e) {
 
     const todaysDate = locale.split(", ")[0]; //e.g "10/5/2026"
 
+    const historyInfo = {
+        currency: selectedCurrency, //e.g £
+        originalPrice: priceInput, //e.g 120
+        discountPercentage: discountInput, //e.g 40
+        discount: discount, // e.g 72
+        savings: savings, //e.g 48
+        dateSearched: todaysDate //e.g 12/08/2017
+    };
+
     showResult(discount, savings);
     storeHistory();
-    updateHistoryInHTML(discountInput, priceInput, discount, todaysDate);
+    updateHistoryInHTML(historyInfo);
+    showHistoryCont();
 
     function calculateDiscountAndSavings() {
         const discount = priceInput - ((discountInput / 100) * priceInput);
@@ -80,14 +83,6 @@ form.addEventListener("submit", function (e) {
     }
 
     function storeHistory() {
-        const historyInfo = {
-            currency: selectedCurrency, //e.g £
-            originalPrice: priceInput, //e.g 120
-            discountPercentage: discountInput, //e.g 40
-            discount: discount, // e.g 72
-            savings: savings //e.g 48
-        };
-
         if (historyArr.length === 10) historyArr.pop();
 
         historyArr.unshift(historyInfo);
@@ -96,8 +91,8 @@ form.addEventListener("submit", function (e) {
     }
 });
 
-//!HIDE THE DISCOUNT CALCULATION WHEN USER CLEARS INPUT
-clearBtn.addEventListener("click", function (e) {
+//!HIDE THE OUTPUT WINDOW WHEN USER CLEARS INPUT
+clearInputBtn.addEventListener("click", function (e) {
     showDefaultState();
 
     function showDefaultState() {
@@ -120,13 +115,23 @@ currencyDropdown.addEventListener("change", function () {
     dropdown.value = "";
 });
 
-//!OPEN AND CLOSE THE HISTORY MODAL 
+//!OPEN THE HISTORY MODAL 
 historyBtn.addEventListener("click", function (e) {
     historyModal.showModal();
 });
 
+//!CLOSE THE HISTORY MODAL 
 closeModalBtn.addEventListener("click", function (e) {
     historyModal.close();
 });
 
+//!CLEAR HISTORY
+clearHistoryBtn.addEventListener("click", function (e) {
+    localStorage.clear();
+    historyConts.innerHTML = "";
+
+    //hide default window
+    noHistoryCont.classList.remove("display-none");
+    historyCont.classList.add("display-none");
+})
 
