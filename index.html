@@ -6,93 +6,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discount Calculator</title>
     <script defer src="./javascript/index.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- flag icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
     <style>
-        main {
-            width: 80vw;
-            margin: 0 auto;
-            display: flex;
-            gap: 30px;
-        }
 
-        form>div:nth-last-child(-n+3) {
-            margin-top: 10px;
-        }
-
-        #history-btn {
-            position: fixed;
-            right: 20px;
-        }
-
-        dialog {
-            width: 80vw;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .history-cont div {
-            display: flex;
-            gap: 12px;
-        }
-
-        .display-none {
-            display: none;
-        }
     </style>
 </head>
 
 <body>
     <main>
         <!-- history button -->
-        <button id="history-btn">History</button>
+        <button id="history-btn">
+            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M4.29229 6.37598V1.21536C4.29229 1.05215 4.22745 0.895625 4.11205 0.780218C3.99664 0.664811 3.84011 0.599976 3.6769 0.599976C3.51369 0.599976 3.35717 0.664811 3.24176 0.780218C3.12635 0.895625 3.06152 1.05215 3.06152 1.21536V8.59998C3.06152 8.76319 3.12635 8.91971 3.24176 9.03512C3.35717 9.15053 3.51369 9.21536 3.6769 9.21536H11.0615C11.2247 9.21536 11.3813 9.15053 11.4967 9.03512C11.6121 8.91971 11.6769 8.76319 11.6769 8.59998C11.6769 8.43677 11.6121 8.28024 11.4967 8.16483C11.3813 8.04943 11.2247 7.98459 11.0615 7.98459H4.60244C7.28306 4.25782 11.6584 1.83074 16.6 1.83074C24.7563 1.83074 31.3692 8.44367 31.3692 16.6C31.3692 24.7563 24.7563 31.3692 16.6 31.3692C8.44367 31.3692 1.83075 24.7563 1.83075 16.6C1.83075 16.0092 1.8648 15.4271 1.9329 14.8535C1.94417 14.7649 1.9366 14.6749 1.91071 14.5894C1.88481 14.5039 1.84117 14.4248 1.78262 14.3573C1.72408 14.2898 1.65195 14.2354 1.57096 14.1977C1.48997 14.16 1.40193 14.1398 1.31259 14.1384C1.16698 14.1372 1.02597 14.1894 0.916212 14.2851C0.806454 14.3808 0.735551 14.5134 0.716903 14.6578C0.638566 15.3022 0.599519 15.9508 0.59998 16.6C0.59998 25.4369 7.76306 32.6 16.6 32.6C25.4369 32.6 32.6 25.4369 32.6 16.6C32.6 7.76305 25.4369 0.599976 16.6 0.599976C11.6523 0.599976 7.22767 2.84613 4.29229 6.37598ZM15.9846 6.75382C16.1478 6.75382 16.3043 6.81866 16.4197 6.93406C16.5351 7.04947 16.6 7.206 16.6 7.36921V16.6H23.3692C23.5324 16.6 23.6889 16.6648 23.8044 16.7802C23.9198 16.8956 23.9846 17.0522 23.9846 17.2154C23.9846 17.3786 23.9198 17.5351 23.8044 17.6505C23.6889 17.7659 23.5324 17.8307 23.3692 17.8307H15.9846C15.8214 17.8307 15.6649 17.7659 15.5494 17.6505C15.434 17.5351 15.3692 17.3786 15.3692 17.2154V7.36921C15.3692 7.206 15.434 7.04947 15.5494 6.93406C15.6649 6.81866 15.8214 6.75382 15.9846 6.75382Z"
+                    stroke="#FF8000" stroke-width="1.2" />
+            </svg>
+        </button>
 
         <!-- input cont -->
-        <article>
+        <article id="form-inputs-cont">
             <h1>Discount Calculator</h1>
 
             <form>
-                <!-- original price container -->
-                <div>
-                    <!-- heading -->
-                    <div>
-                        <label id="price-label" for="price">Original Price (<span
-                                class="currency-sign">£</span>)</label>
-                        <select id="currency-dropdown" name="currency">
-                            <option id="default-option" disabled selected value="">(<span
-                                    class="currency-sign">£</span>) Change</option>
-                            <option value="£">£</option>
-                            <option value="€">£</option>
-                            <option value="$">$</option>
-                            <option value="₦">₦</option>
-                            <option value="₵">₵</option>
-                        </select>
+                <div id="form-inputs">
+                    <!-- original price container -->
+                    <div class="form-input">
+                        <!-- heading -->
+                        <div id="price-label-cont">
+                            <label id="price-label" for="price-input">Original Price</label>
+
+                            <div id="trigger-and-dropdown">
+                                <!-- <select id="currency-dropdown" name="currency">
+    
+                                    <option id="default-option" disabled selected value="">(<span
+                                            class="currency-sign">£</span>)
+                                        Change
+                                    </option>
+    
+                                    <option value="£">
+                                        £
+                                        <span class="fi fi-gb"></span>
+                                    </option>
+    
+                                    <option value="€">
+                                        €
+                                        <span class="fi fi-fr"></span>
+                                    </option>
+    
+                                    <option value="$">
+                                        $
+                                        <span class="fi fi-us"></span>
+                                    </option>
+    
+                                    <option value="₦">
+                                        ₦
+                                        <span class="fi fi-ng"></span>
+                                    </option>
+    
+                                    <option value="₵">
+                                        ₵
+                                        <span class="fi fi-gh"></span>
+                                    </option>
+                                </select> -->
+                                <button id="dropdown-btn" type="button">
+                                    <span class="currency-sign">(£)</span>
+                                    <span class="change-text">Change</span>
+                                </button>
+                                <ul id="currency-dropdown" class="opened">
+                                    <div id="dropdown-wrapper">
+                                        <li data-sign="£" class="dropdown-li selected">
+                                            <span>£</span>
+                                            <span class="fi fi-gb"></span>
+                                        </li>
+
+                                        <li data-sign="€" class="dropdown-li">
+                                            <span>€</span>
+                                            <span class="fi fi-fr"></span>
+                                        </li>
+
+                                        <li data-sign="$" class="dropdown-li">
+                                            <span>$</span>
+                                            <span class="fi fi-us"></span>
+                                        </li>
+
+                                        <li data-sign="₦" class="dropdown-li">
+                                            <span>₦</span>
+                                            <span class="fi fi-ng"></span>
+                                        </li>
+
+                                        <li data-sign="₵" class="dropdown-li">
+                                            <span>₵</span>
+                                            <span class="fi fi-gh"></span>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <!-- input -->
+                        <div id="price-input-cont" class="input-cont">
+                            <span class="currency-sign display-none">£</span>
+                            <input required id="price-input" type="number" step="any" placeholder="Type in a number">
+                        </div>
                     </div>
 
-                    <!-- input -->
-                    <div><span class="currency-sign">£</span><input required id="price" type="number"></div>
-                </div>
+                    <!-- discount container -->
+                    <div class="form-input">
+                        <!-- heading -->
+                        <div>
+                            <label for="discount-input">Discount Percentage</label>
+                        </div>
 
-                <!-- discount container -->
-                <div>
-                    <!-- heading -->
-                    <div>
-                        <label for="discount">Discount Percentage (%)</label>
+                        <!-- input -->
+                        <div id="discount-input-cont" class="input-cont">
+                            <input required id="discount-input" type="number" step="any"
+                                placeholder="Type in a percentage">
+                            <span id="percent" class="display-none">%</span>
+                        </div>
                     </div>
-
-                    <!-- input -->
-                    <div><input required id="discount" type="number"><span>%</span></div>
                 </div>
 
                 <!-- buttons container -->
-                <div>
-                    <button type="submit">Calculate</button>
+                <div id="btns-cont">
+                    <button id="calculate-btn" type="submit">Calculate</button>
                     <button id="clear-input-btn" type="reset">Clear</button>
                 </div>
             </form>
         </article>
 
         <!-- output cont -->
-        <article>
+        <article style="display:none">
             <!-- no calculations container -->
             <div id="no-calculations-cont">
                 <img src="" alt="man staring at calculator">
@@ -146,7 +192,6 @@
         </div>
 
     </dialog>
-
 </body>
 
 </html>

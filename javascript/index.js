@@ -5,13 +5,16 @@ const historyBtn = document.getElementById("history-btn");
 const form = document.getElementsByTagName("form")[0];
 const currencySignsList = document.querySelectorAll(".currency-sign");
 
+
+const dropdownBtn = document.getElementById("dropdown-btn");
 const currencyDropdown = document.getElementById("currency-dropdown");
 
 const noCalculationsCont = document.getElementById("no-calculations-cont");
 const outputCont = document.getElementById("output-cont");
 
-const priceElem = document.getElementById("price");
-const discountElem = document.getElementById("discount");
+const priceInputElem = document.getElementById("price-input");
+const discountInputCont = document.getElementById("discount-input-cont");
+const discountInputElem = document.getElementById("discount-input");
 const newPriceElem = document.getElementById("new-price");
 const savingsElem = document.getElementById("savings");
 
@@ -22,6 +25,8 @@ const closeModalBtn = document.getElementById("close-modal-btn");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 let selectedCurrency = currencyDropdown.value || "£";
+
+let charsAtLowerBound;
 
 //!UPDATE HISTORY MODAL'S HTML IF THERE'S HISTORY IN LOCAL STORAGE
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -37,12 +42,32 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 });
 
+//!LIMITS THE LENGTH OF THE DISCOUNT INPUT BOX (because it's set to fixed-size: content in css)
+discountInputElem.addEventListener('keyup', function () {
+    const containerWidth = discountInputCont.getBoundingClientRect().width;
+    const inputWidth = discountInputElem.getBoundingClientRect().width;
+    const lowerBound = ((80 / 100) * containerWidth).toFixed(2);
+    const upperBound = ((83 / 100) * containerWidth).toFixed(2);
+
+    // 
+    if ((inputWidth > lowerBound) && (inputWidth < upperBound)) {
+        charsAtLowerBound = discountInputElem.value.length;
+        discountInputElem.style.setProperty("width", `${lowerBound}px`);
+    }
+
+    if (discountInputElem.value.length < charsAtLowerBound) {
+        discountInputElem.style.setProperty("width", "auto");
+    }
+
+    // console.log({ condition1, containerWidth, inputWidth, minValue: lowerBound, maxValue: upperBound, numOfCharsAtWidthCap: charsAtLowerBound });
+});
+
 //!CALCULATE DISCOUNT 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const priceInput = +Number(priceElem.value).toFixed(2); //e.g 120
-    const discountInput = +Number(discountElem.value).toFixed(2); // 40%
+    const priceInput = +Number(priceInputElem.value).toFixed(2); //e.g 120
+    const discountInput = +Number(discountInputElem.value).toFixed(2); // 40%
 
     const { discount, savings } = calculateDiscountAndSavings(); //{discount: 72, savings: 48}
 
@@ -60,6 +85,7 @@ form.addEventListener("submit", function (e) {
         dateSearched: todaysDate //e.g 12/08/2017
     };
 
+
     showResult(discount, savings);
     storeHistory();
     updateHistoryInHTML(historyInfo);
@@ -69,7 +95,7 @@ form.addEventListener("submit", function (e) {
         const discount = priceInput - ((discountInput / 100) * priceInput);
         const discountRoundedDown = Number(discount.toFixed(2));
 
-        const savings = priceInput - discountRoundedDown;
+        const savings = Number((priceInput - discountRoundedDown).toFixed(2));
 
         return { discount: discountRoundedDown, savings: savings };
     }
@@ -91,6 +117,17 @@ form.addEventListener("submit", function (e) {
     }
 });
 
+//!DISPLAY THE CURRENCY AND THE PERCENTAGE SIGN WHEN THE USER FOCUSES IN ON THE INPUT
+form.addEventListener("focusin", function (e) {
+    if (e.target.id === "price-input") {
+        const currencySign = document.querySelector("#price-input-cont .currency-sign");
+        currencySign.classList.remove("display-none");
+    } else if (e.target.id === "discount-input") {
+        const percentageSign = document.querySelector("#discount-input + #percent");
+        percentageSign.classList.remove("display-none");
+    }
+})
+
 //!HIDE THE OUTPUT WINDOW WHEN USER CLEARS INPUT
 clearInputBtn.addEventListener("click", function (e) {
     showDefaultState();
@@ -101,19 +138,40 @@ clearInputBtn.addEventListener("click", function (e) {
     }
 });
 
-//!UPDATE THE CURRENCY SIGNS
-currencyDropdown.addEventListener("change", function () {
-    const dropdown = this;
-
-    //update all signs in the ui
-    currencySignsList.forEach((sign) => {
-        sign.textContent = dropdown.value; //user selection
-    });
-
-    selectedCurrency = dropdown.value;
-
-    dropdown.value = "";
+//!OPEN THE CURRENCY DROPDOWN
+dropdownBtn.addEventListener("click", function () {
+    currencyDropdown.classList.toggle("opened");
 });
+
+//!UPDATE THE CURRENCY SIGNS
+currencyDropdown.addEventListener("click", function (e) {
+    let selectedLi;
+
+    if (e.target.className === "dropdown-li") {
+        selectedLi = e.target;
+        selectedCurrency = selectedLi;
+
+        showSelected();
+
+        //update all signs in the ui
+        currencySignsList.forEach((sign) => {
+            sign.textContent = `(${selectedLi.dataset.sign})`;
+        });
+    }
+
+    function showSelected() {
+        const listItems = currencyDropdown.querySelectorAll("li");
+
+        //clears .selected from all list items
+        listItems.forEach((li) => {
+            li.classList.remove("selected");
+        });
+
+        selectedLi.classList.add("selected");
+    }
+});
+
+
 
 //!OPEN THE HISTORY MODAL 
 historyBtn.addEventListener("click", function (e) {
@@ -133,5 +191,4 @@ clearHistoryBtn.addEventListener("click", function (e) {
     //hide default window
     noHistoryCont.classList.remove("display-none");
     historyCont.classList.add("display-none");
-})
-
+});

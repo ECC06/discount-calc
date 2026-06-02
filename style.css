@@ -1,0 +1,358 @@
+/* *BASE STYLES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* colors */
+    --main-orange: #ff8000;
+    --black: #000000;
+    --dark-grey: #282828;
+    --light-grey: #6d6d6d;
+    --lighter-grey: #a5a5a5;
+    --transparent: transparent;
+    --err-red: #ff4b4b;
+
+    /* font-sizes (naming in pixels, values in rem) */
+    --font-size-4: 0.25rem;
+    --font-size-8: 0.5rem;
+    --font-size-12: 0.75rem;
+    --font-size-16: 1rem;
+    --font-size-20: 1.25rem;
+    --font-size-24: 1.5rem;
+    --font-size-28: 1.75rem;
+    --font-size-32: 2rem;
+    --font-size-36: 2.25rem;
+    --font-size-40: 2.5rem;
+    --font-size-44: 2.75rem;
+    --font-size-48: 3rem;
+    --font-size-52: 3.25rem;
+    --font-size-56: 3.5rem;
+    --font-size-60: 3.75rem;
+    --font-size-64: 4rem;
+    --font-size-68: 4.25rem;
+    --font-size-72: 4.5rem;
+    --font-size-76: 4.75rem;
+    --font-size-80: 5rem;
+    --font-size-84: 5.25rem;
+    --font-size-88: 5.5rem;
+    --font-size-92: 5.75rem;
+    --font-size-96: 6rem;
+    --font-size-100: 6.25rem;
+
+    /* font weight */
+    --regular: 400;
+    --medium: 500;
+    --semi-bold: 600;
+    --bold: 700;
+}
+
+/* 100 - Thin */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-100-normal.woff2)
+        format("woff2");
+}
+/* 200 - Extra Light */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-200-normal.woff2)
+        format("woff2");
+}
+/* 300 - Light */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-300-normal.woff2)
+        format("woff2");
+}
+/* 400 - Regular */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff2)
+        format("woff2");
+}
+/* 500 - Medium */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-500-normal.woff2)
+        format("woff2");
+}
+/* 600 - Semi Bold */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-600-normal.woff2)
+        format("woff2");
+}
+/* 700 - Bold */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-700-normal.woff2)
+        format("woff2");
+}
+/* 800 - Extra Bold */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 800;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-800-normal.woff2)
+        format("woff2");
+}
+/* 900 - Black */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 900;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-900-normal.woff2)
+        format("woff2");
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background-color: var(--black);
+}
+
+body,
+button,
+input {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+main {
+    background-color: var(--dark-grey);
+    width: max(300px, 90vw);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 90px 16px 20px;
+    border-radius: 20px;
+    position: relative;
+    color: white;
+}
+
+#history-btn {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 16px;
+    top: 24px;
+}
+
+h1 {
+    font-size: var(--font-size-24);
+    font-weight: var(--semi-bold);
+}
+
+form {
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 86px;
+}
+
+#form-inputs-cont {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+#form-inputs {
+    display: grid;
+    gap: 24px;
+}
+
+label {
+    font-size: 15px;
+    font-weight: var(--medium);
+}
+
+#price-label-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#trigger-and-dropdown {
+    width: 130px;
+    position: relative;
+}
+
+#dropdown-btn,
+.dropdown-li {
+    background-color: var(--light-grey);
+    color: white;
+}
+
+#dropdown-btn {
+    display: flex;
+    gap: 4px;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: var(--medium);
+}
+
+#dropdown-btn .change-text::after {
+    margin-left: 20px;
+    content: url("./icons-and-images/picker-icon.svg");
+    transition: all 0.3s ease-in-out;
+}
+
+#currency-dropdown {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    width: inherit;
+    border: none;
+    background-color: var(--light-grey);
+    border-radius: 12px;
+    color: white;
+    padding: 0 8px;
+    list-style: none;
+    position: absolute;
+    top: 120%;
+    transition: all 0.3s;
+}
+
+#dropdown-wrapper {
+    min-height: 0;
+}
+
+#currency-dropdown.opened {
+    grid-template-rows: 1fr;
+    padding: 8px;
+}
+
+.dropdown-li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 6px 8px;
+    transition: all 0.3s;
+}
+
+.dropdown-li:hover,
+.selected {
+    background-color: var(--lighter-grey);
+}
+
+.input-cont {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: 2px solid var(--main-orange);
+    border-radius: 10px;
+    height: 44px;
+    margin-top: 16px;
+    padding-left: 16px;
+}
+
+.input-cont input {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+}
+
+.input-cont input,
+.input-cont .currency-sign {
+    font-size: 14px;
+}
+
+.input-cont input:focus {
+    outline: none;
+}
+
+#price-input {
+    margin-left: 4px;
+    width: 100%;
+}
+
+#discount-input-cont {
+    padding: 0 16px;
+}
+
+#discount-input {
+    field-sizing: content;
+    min-width: 20px;
+    margin-right: 4px;
+}
+
+#btns-cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    gap: 12px;
+}
+
+#btns-cont :where(button) {
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: var(--medium);
+    color: white;
+    border-radius: 12px;
+    border: none;
+    font-size: var(--font-size-20);
+}
+
+#calculate-btn {
+    background-color: var(--main-orange);
+}
+
+/* fix specificity */
+#clear-input-btn {
+    color: var(--main-orange);
+    border: 3px solid;
+    background-color: transparent;
+}
+
+dialog {
+    width: 80vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.history-cont div {
+    display: flex;
+    gap: 12px;
+}
+
+.display-none {
+    display: none;
+}
