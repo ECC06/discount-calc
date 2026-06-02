@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discount Calculator</title>
-    <script defer src="./javascript/index.js" type="module"></script>
+    <!-- <script defer src="./javascript/index.js" type="module"></script> -->
     <link rel="stylesheet" href="style.css">
     <!-- flag icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
@@ -142,26 +142,34 @@
         </article>
     </main>
 
-    <dialog id="history-modal">
-        <button id="close-modal-btn">Close</button>
+    <dialog id="history-modal" open>
+        <button id="close-modal-btn">
+            <img src="./icons-and-images/close-history-icon.svg" alt="close history">
+        </button>
 
-        <!-- no history container -->
-        <div id="no-history-cont">
-            <img src="" alt="">
-            <h2>No history yet!</h2>
-        </div>
-
-        <!-- history container -->
-        <div id="history-cont" class="display-none">
-            <h2>You searched:</h2>
-
-            <!-- history containers -->
-            <div id="history-containers">
-
+        <article id="history-wrapper">
+            <!-- no history container -->
+            <div id="no-history-cont" class="display-none">
+                <img src="./icons-and-images/history-img.png" alt="trash can that's clean">
+                <h2>No history yet!</h2>
             </div>
 
-            <button id="clear-history-btn">Clear</button>
-        </div>
+            <!-- history container -->
+            <div id="history-cont">
+                <h2>You searched:</h2>
+
+                <!-- history containers -->
+                <ul id="history-containers">
+                </ul>
+
+                <button id="clear-history-btn">
+                    <span>Clear</span>
+                    <span id="trashcan-icon">
+                        <img src="./icons-and-images/trash-icon.svg" alt="bin icon">
+                    </span>
+                </button>
+            </div>
+        </article>
 
     </dialog>
 </body>
