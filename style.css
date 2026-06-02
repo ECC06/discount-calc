@@ -153,6 +153,7 @@ main {
     background-color: var(--dark-grey);
     width: max(300px, 90vw);
     min-height: 600px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     padding: 90px 16px 20px;
@@ -181,7 +182,7 @@ form {
     gap: 86px;
 }
 
-#form-inputs-cont {
+:where(#form-inputs-cont) {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -320,7 +321,7 @@ label {
     gap: 12px;
 }
 
-#btns-cont :where(button) {
+main button {
     padding: 12px 0;
     font-size: 16px;
     font-weight: var(--medium);
@@ -335,10 +336,60 @@ label {
 }
 
 /* fix specificity */
+#back-btn,
 #clear-input-btn {
     color: var(--main-orange);
     border: 3px solid;
     background-color: transparent;
+}
+
+/* #form-inputs-cont {
+    display: none;
+} */
+
+h1 {
+    display: none;
+}
+
+#output-cont {
+    height: 100%;
+    border: 2px solid;
+}
+
+#number-conts {
+    display: grid;
+    gap: 28px;
+}
+
+.number-cont {
+    border-radius: 12px;
+    padding: 16px;
+}
+
+#no-calculations-cont {
+    display: none;
+}
+
+.number-cont {
+    background-color: var(--light-grey);
+}
+
+.heading-and-number h3 {
+    font-size: var(--font-size-16);
+    font-weight: var(--regular);
+    color: var(--main-orange);
+}
+
+.heading-and-number p {
+    display: flex;
+    gap: 2px;
+    font-size: var(--font-size-36);
+    font-weight: var(--semi-bold);
+}
+
+#back-btn {
+    width: 100%;
+    margin-top: 60px;
 }
 
 dialog {

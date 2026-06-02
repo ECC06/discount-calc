@@ -2,9 +2,9 @@ import { getHistoryFromLocalStorage, updateHistoryInHTML, historyConts, historyC
 
 const historyBtn = document.getElementById("history-btn");
 
+const formInputsCont = document.getElementById("form-inputs-cont");
 const form = document.getElementsByTagName("form")[0];
 const currencySignsList = document.querySelectorAll(".currency-sign");
-
 
 const dropdownBtn = document.getElementById("dropdown-btn");
 const currencyDropdown = document.getElementById("currency-dropdown");
@@ -19,6 +19,7 @@ const newPriceElem = document.getElementById("new-price");
 const savingsElem = document.getElementById("savings");
 
 const clearInputBtn = document.getElementById("clear-input-btn");
+const backBtn = document.getElementById("back-btn");
 
 const historyModal = document.getElementById("history-modal");
 const closeModalBtn = document.getElementById("close-modal-btn");
@@ -104,6 +105,11 @@ form.addEventListener("submit", function (e) {
         newPriceElem.textContent = discount;
         savingsElem.textContent = savings;
 
+        //for mobile screens
+        if (window.innerWidth <= 768) {
+            formInputsCont.classList.add("display-none");
+        }
+
         noCalculationsCont.classList.add("display-none");
         outputCont.classList.remove("display-none");
     }
@@ -171,7 +177,11 @@ currencyDropdown.addEventListener("click", function (e) {
     }
 });
 
-
+//!SHOWS THE FORM ON MOBILE
+backBtn.addEventListener("click", function (e) {
+    outputCont.classList.add("display-none");
+    formInputsCont.classList.remove("display-none");
+});
 
 //!OPEN THE HISTORY MODAL 
 historyBtn.addEventListener("click", function (e) {

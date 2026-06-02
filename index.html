@@ -38,43 +38,11 @@
                             <label id="price-label" for="price-input">Original Price</label>
 
                             <div id="trigger-and-dropdown">
-                                <!-- <select id="currency-dropdown" name="currency">
-    
-                                    <option id="default-option" disabled selected value="">(<span
-                                            class="currency-sign">£</span>)
-                                        Change
-                                    </option>
-    
-                                    <option value="£">
-                                        £
-                                        <span class="fi fi-gb"></span>
-                                    </option>
-    
-                                    <option value="€">
-                                        €
-                                        <span class="fi fi-fr"></span>
-                                    </option>
-    
-                                    <option value="$">
-                                        $
-                                        <span class="fi fi-us"></span>
-                                    </option>
-    
-                                    <option value="₦">
-                                        ₦
-                                        <span class="fi fi-ng"></span>
-                                    </option>
-    
-                                    <option value="₵">
-                                        ₵
-                                        <span class="fi fi-gh"></span>
-                                    </option>
-                                </select> -->
                                 <button id="dropdown-btn" type="button">
                                     <span class="currency-sign">(£)</span>
                                     <span class="change-text">Change</span>
                                 </button>
-                                <ul id="currency-dropdown" class="opened">
+                                <ul id="currency-dropdown">
                                     <div id="dropdown-wrapper">
                                         <li data-sign="£" class="dropdown-li selected">
                                             <span>£</span>
@@ -138,7 +106,7 @@
         </article>
 
         <!-- output cont -->
-        <article style="display:none">
+        <article id="output-cont" class="display-none">
             <!-- no calculations container -->
             <div id="no-calculations-cont">
                 <img src="" alt="man staring at calculator">
@@ -146,26 +114,30 @@
             </div>
 
             <!-- output container -->
-            <div id="output-cont" class="display-none">
-                <div>
-                    <div>
-                        <h3>New Price</h3>
-                        <p>
-                            <span class="currency-sign">£</span>
-                            <span id="new-price"></span>
-                        </p>
+            <div>
+                <div id="number-conts">
+                    <div class="number-cont">
+                        <div class="heading-and-number">
+                            <h3>New Price</h3>
+                            <p>
+                                <span class="currency-sign">£</span>
+                                <span id="new-price"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="number-cont">
+                        <div class="heading-and-number">
+                            <h3>Savings</h3>
+                            <p>
+                                <span class="currency-sign">£</span>
+                                <span id="savings"></span>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <div>
-                        <h3>Savings</h3>
-                        <p>
-                            <span class="currency-sign">£</span>
-                            <span id="savings"></span>
-                        </p>
-                    </div>
-                </div>
+                <button id="back-btn" type="reset">Back</button>
             </div>
         </article>
     </main>
