@@ -2,7 +2,7 @@ import { getHistoryFromLocalStorage, updateHistoryInHTML, historyConts, historyC
 
 const historyBtn = document.getElementById("history-btn");
 
-const formInputsCont = document.getElementById("form-inputs-cont");
+const headingAndForm = document.getElementById("heading-and-form");
 const form = document.getElementsByTagName("form")[0];
 const currencySignsList = document.querySelectorAll(".currency-sign");
 
@@ -10,7 +10,7 @@ const dropdownBtn = document.getElementById("dropdown-btn");
 const currencyDropdown = document.getElementById("currency-dropdown");
 
 const noCalculationsCont = document.getElementById("no-calculations-cont");
-const outputCont = document.getElementById("output-cont");
+const outputCont = document.querySelector(".output-cont");
 
 const priceInputElem = document.getElementById("price-input");
 const discountInputCont = document.getElementById("discount-input-cont");

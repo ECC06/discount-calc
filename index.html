@@ -23,7 +23,7 @@
         </button>
 
         <!-- input cont -->
-        <article id="form-inputs-cont">
+        <article id="heading-and-form">
             <h1>Discount Calculator</h1>
 
             <form>
@@ -40,11 +40,21 @@
                                         <span class="currency-sign">(£)</span>
                                         <span class="change-text">Change</span>
                                     </div>
-                                    <svg id="arrow-icon" width="11" height="7" viewBox="0 0 11 7" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
+
+                                    <!-- mobile picker icon -->
+                                    <svg id="mobile-arrow" class="arrow-icon" width="11" height="7" viewBox="0 0 11 7"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9.80005 0.799988L5.30005 5.79999L0.800049 0.799988" stroke="white"
                                             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
+
+                                    <!-- desktop picker icon -->
+                                    <svg id="desktop-arrow" class="arrow-icon" width="14" height="9" viewBox="0 0 14 9"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 1L7 8L1 1" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
                                 </button>
                                 <ul id="currency-dropdown">
                                     <div id="dropdown-wrapper">
@@ -81,7 +91,7 @@
                         <!-- input -->
                         <div id="price-input-cont" class="input-cont">
                             <span class="currency-sign display-none">£</span>
-                            <input required id="price-input" type="number" step="any" placeholder="Type in a number">
+                            <input required id="price-input" type="number" step="any" placeholder="Type in a price">
                         </div>
                     </div>
 
@@ -108,34 +118,30 @@
         </article>
 
         <!-- output cont -->
-        <article id="output-cont" class="display-none">
+        <article class="output-cont display-none mobile desktop">
             <!-- no calculations container -->
             <div id="no-calculations-cont">
-                <img src="" alt="man staring at calculator">
+                <img src="./icons-and-images/man-using-calc.png" alt="man staring at calculator">
                 <h2>No calculations yet!</h2>
             </div>
 
             <!-- output container -->
-            <div>
+            <div id="calculation-output" class="display-none">
                 <div id="number-conts">
                     <div class="number-cont">
-                        <div class="heading-and-number">
-                            <h3>New Price</h3>
-                            <p>
-                                <span class="currency-sign">£</span>
-                                <span id="new-price"></span>
-                            </p>
-                        </div>
+                        <h3>New Price</h3>
+                        <p>
+                            <span class="currency-sign">£</span>
+                            <span id="new-price"></span>
+                        </p>
                     </div>
 
                     <div class="number-cont">
-                        <div class="heading-and-number">
-                            <h3>Savings</h3>
-                            <p>
-                                <span class="currency-sign">£</span>
-                                <span id="savings"></span>
-                            </p>
-                        </div>
+                        <h3>Savings</h3>
+                        <p>
+                            <span class="currency-sign">£</span>
+                            <span id="savings"></span>
+                        </p>
                     </div>
                 </div>
 
@@ -157,11 +163,12 @@
             </div>
 
             <!-- history container -->
-            <div class="history-cont display-none">
+            <div class="history-cont">
                 <h2>Previous Searches</h2>
 
                 <!-- history containers -->
                 <ul id="history-containers">
+
                 </ul>
 
                 <button id="clear-history-btn">
