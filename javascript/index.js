@@ -9,8 +9,9 @@ const currencySignsList = document.querySelectorAll(".currency-sign");
 const dropdownBtn = document.getElementById("dropdown-btn");
 const currencyDropdown = document.getElementById("currency-dropdown");
 
-const noCalculationsCont = document.getElementById("no-calculations-cont");
 const outputCont = document.querySelector(".output-cont");
+const noCalculationsCont = document.querySelector(".no-calculations-cont");
+const calculationOutput = document.getElementById("calculation-output");
 
 const priceInputElem = document.getElementById("price-input");
 const discountInputCont = document.getElementById("discount-input-cont");
@@ -106,12 +107,15 @@ form.addEventListener("submit", function (e) {
         savingsElem.textContent = savings;
 
         //for mobile screens
-        if (window.innerWidth <= 768) {
-            formInputsCont.classList.add("display-none");
+        if (window.innerWidth < 992) {
+            headingAndForm.classList.add("display-none");
+            outputCont.classList.remove("display-none");
+        } else {
+            noCalculationsCont.classList.add("display-none");
         }
 
-        noCalculationsCont.classList.add("display-none");
-        outputCont.classList.remove("display-none");
+        calculationOutput.classList.remove("display-none");
+
     }
 
     function storeHistory() {
@@ -139,8 +143,10 @@ clearInputBtn.addEventListener("click", function (e) {
     showDefaultState();
 
     function showDefaultState() {
-        outputCont.classList.add("display-none");
-        noCalculationsCont.classList.remove("display-none");
+        if (window.innerWidth >= 992) {
+            calculationOutput.classList.add("display-none");
+            noCalculationsCont.classList.remove("display-none");
+        }
     }
 });
 
@@ -180,7 +186,7 @@ currencyDropdown.addEventListener("click", function (e) {
 //!SHOWS THE FORM ON MOBILE
 backBtn.addEventListener("click", function (e) {
     outputCont.classList.add("display-none");
-    formInputsCont.classList.remove("display-none");
+    headingAndForm.classList.remove("display-none");
 });
 
 //!OPEN THE HISTORY MODAL 

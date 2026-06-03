@@ -368,6 +368,11 @@ main button,
     height: 100%;
 }
 
+/* on mobile, this doesn't exist */
+.no-calculations-cont {
+    display: none;
+}
+
 #number-conts {
     display: grid;
     gap: 28px;
@@ -508,6 +513,12 @@ dialog h2 {
     justify-content: center;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#trashcan-icon {
+    height: 24px;
 }
 
 #bin-icon {
@@ -622,7 +633,12 @@ dialog h2 {
         border-radius: 28px;
     }
 
-    #no-calculations-cont h2 {
+    /* put this back into DOM on desktop */
+    .no-calculations-cont {
+        display: block;
+    }
+
+    .no-calculations-cont h2 {
         margin-top: 12px;
         text-align: center;
         font-size: var(--font-size-28);
@@ -647,10 +663,26 @@ dialog h2 {
     #close-modal-btn {
         top: 20px;
         right: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #close-modal-btn:hover {
+        scale: 1.2;
     }
 
     .history-cont {
         width: 95%;
+    }
+
+    #clear-history-btn {
+        width: 150px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    #clear-history-btn:hover {
+        background-color: var(--main-orange-light);
     }
 
     .history-item {

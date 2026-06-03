@@ -102,7 +102,7 @@
 
                         <!-- input -->
                         <div id="discount-input-cont" class="input-cont">
-                            <input required id="discount-input" type="number" step="any"
+                            <input required id="discount-input" type="number" step="any" max="100"
                                 placeholder="Type in a percentage">
                             <span id="percent" class="display-none">%</span>
                         </div>
@@ -120,7 +120,7 @@
         <!-- output cont -->
         <article class="output-cont display-none mobile desktop">
             <!-- no calculations container -->
-            <div id="no-calculations-cont">
+            <div class="no-calculations-cont">
                 <img src="./icons-and-images/man-using-calc.png" alt="man staring at calculator">
                 <h2>No calculations yet!</h2>
             </div>
@@ -163,7 +163,7 @@
             </div>
 
             <!-- history container -->
-            <div class="history-cont">
+            <div class="history-cont display-none">
                 <h2>Previous Searches</h2>
 
                 <!-- history containers -->
