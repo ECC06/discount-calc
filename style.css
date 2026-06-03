@@ -152,15 +152,16 @@ input {
 }
 
 main {
-    background-color: var(--dark-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
     width: max(300px, 90vw);
     min-height: 600px;
     height: 600px;
-    display: flex;
-    flex-direction: column;
     padding: 90px 16px 20px;
+    background-color: var(--dark-grey);
     border-radius: 20px;
-    position: relative;
     color: white;
 }
 
@@ -189,6 +190,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 32px;
+    height: fit-content;
 }
 
 #form-inputs {
@@ -208,7 +210,6 @@ label {
 }
 
 #trigger-and-dropdown {
-    width: 130px;
     position: relative;
 }
 
@@ -220,24 +221,20 @@ label {
 
 #dropdown-btn {
     display: flex;
-    gap: 4px;
+    align-items: center;
+    gap: 12px;
     border: none;
     padding: 8px;
     border-radius: 8px;
     font-weight: var(--medium);
-}
-
-#dropdown-btn .change-text::after {
-    margin-left: 20px;
-    content: url("./icons-and-images/picker-icon.svg");
-    transition: all 0.3s ease-in-out;
+    font-size: var(--font-size-12);
 }
 
 #currency-dropdown {
     display: grid;
     grid-template-rows: 0fr;
     overflow: hidden;
-    width: inherit;
+    width: 110px;
     border: none;
     background-color: var(--light-grey);
     border-radius: 12px;
@@ -256,6 +253,14 @@ label {
 #currency-dropdown.opened {
     grid-template-rows: 1fr;
     padding: 8px;
+}
+
+#arrow-icon {
+    transition: all 0.3s ease-in-out;
+}
+
+#trigger-and-dropdown:has(.opened) #arrow-icon {
+    rotate: 180deg;
 }
 
 .dropdown-li {
@@ -339,7 +344,6 @@ main button,
     background-color: var(--main-orange);
 }
 
-/* fix specificity */
 #back-btn,
 #clear-input-btn {
     color: var(--main-orange);
@@ -347,17 +351,8 @@ main button,
     background-color: transparent;
 }
 
-/* #form-inputs-cont {
-    display: none;
-} */
-
-h1 {
-    display: none;
-}
-
 #output-cont {
     height: 100%;
-    border: 2px solid;
 }
 
 #number-conts {
@@ -403,7 +398,7 @@ dialog {
     z-index: 2;
     background-color: var(--dark-grey);
     color: white;
-    width: 80vw;
+    width: 85vw;
     height: 80vh;
     transform: translate(-50%, -50%);
     border: none;
@@ -424,7 +419,7 @@ body:has(dialog:open)::before {
 
 #close-modal-btn {
     top: 12px;
-    right: 12px;
+    right: 10px;
     position: absolute;
     background-color: transparent;
     border: none;
@@ -435,15 +430,17 @@ body:has(dialog:open)::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: max(220px, 90%);
-}
-
-#no-history-cont h2 {
-    text-align: center;
 }
 
 #no-history-cont img {
-    width: 100%;
+    display: block;
+    margin: auto;
+    width: min(200px, 60%);
+}
+
+#no-history-cont h2 {
+    margin-top: 12px;
+    text-align: center;
 }
 
 #history-cont {
@@ -451,9 +448,24 @@ body:has(dialog:open)::before {
     gap: 24px;
 }
 
+.history-wrapper {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.history-cont {
+    display: grid;
+    gap: 16px;
+    width: 90%;
+    margin-top: 28px;
+}
+
 #history-containers {
     display: grid;
     gap: 12px;
+    height: 290px;
+    overflow-y: scroll;
 }
 
 .history-item {

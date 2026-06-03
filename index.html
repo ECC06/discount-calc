@@ -5,13 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discount Calculator</title>
-    <!-- <script defer src="./javascript/index.js" type="module"></script> -->
+    <script defer src="./javascript/index.js" type="module"></script>
     <link rel="stylesheet" href="style.css">
     <!-- flag icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -39,8 +36,15 @@
 
                             <div id="trigger-and-dropdown">
                                 <button id="dropdown-btn" type="button">
-                                    <span class="currency-sign">(£)</span>
-                                    <span class="change-text">Change</span>
+                                    <div>
+                                        <span class="currency-sign">(£)</span>
+                                        <span class="change-text">Change</span>
+                                    </div>
+                                    <svg id="arrow-icon" width="11" height="7" viewBox="0 0 11 7" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.80005 0.799988L5.30005 5.79999L0.800049 0.799988" stroke="white"
+                                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
                                 </button>
                                 <ul id="currency-dropdown">
                                     <div id="dropdown-wrapper">
@@ -84,9 +88,7 @@
                     <!-- discount container -->
                     <div class="form-input">
                         <!-- heading -->
-                        <div>
-                            <label for="discount-input">Discount Percentage</label>
-                        </div>
+                        <label for="discount-input">Discount Percentage</label>
 
                         <!-- input -->
                         <div id="discount-input-cont" class="input-cont">
@@ -142,21 +144,21 @@
         </article>
     </main>
 
-    <dialog id="history-modal" open>
+    <dialog id="history-modal">
         <button id="close-modal-btn">
             <img src="./icons-and-images/close-history-icon.svg" alt="close history">
         </button>
 
-        <article id="history-wrapper">
+        <article class="history-wrapper">
             <!-- no history container -->
-            <div id="no-history-cont" class="display-none">
+            <div id="no-history-cont">
                 <img src="./icons-and-images/history-img.png" alt="trash can that's clean">
                 <h2>No history yet!</h2>
             </div>
 
             <!-- history container -->
-            <div id="history-cont">
-                <h2>You searched:</h2>
+            <div class="history-cont display-none">
+                <h2>Previous Searches</h2>
 
                 <!-- history containers -->
                 <ul id="history-containers">

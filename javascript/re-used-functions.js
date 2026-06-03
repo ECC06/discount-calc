@@ -3,7 +3,7 @@ export const getHistoryFromLocalStorage = () => JSON.parse(localStorage.getItem(
 export const historyConts = document.getElementById("history-containers");
 
 export const noHistoryCont = document.getElementById("no-history-cont");
-export const historyCont = document.getElementById("history-cont");
+export const historyCont = document.querySelector(".history-cont");
 
 
 export function showHistoryCont() {
@@ -24,7 +24,7 @@ export function updateHistoryInHTML(historyObj) {
                         <p>${discountPercentage}% off ${currency}${originalPrice}, which is <span class="discount-output">${currency}${discount}</span>
                         </p>
                         <!-- e.g 20% off £29, which is £23.30 -->
-                        
+
                         <p>Searched on: <span class="date-searched">${dateSearched}</span></p>
                         <!-- e.g Searched on: 10/15/2025 -->
                 </li>
