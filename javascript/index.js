@@ -76,26 +76,35 @@ discountInputElem.addEventListener('keyup', function (e) {
     const lowerBound = ((80 / 100) * containerWidth).toFixed(2);
     const upperBound = ((83 / 100) * containerWidth).toFixed(2);
 
-    // 
-    if ((inputWidth > lowerBound) && (inputWidth < upperBound)) {
-        charsAtLowerBound = discountInputElem.value.length; //28
-        discountInputElem.style.setProperty("width", `${lowerBound} px`); //200
+    limitInputElemWidth();
+    removePercentOnEmpty();
+
+    function limitInputElemWidth() {
+        // if the input's width is between 80% and 83% of the containers' width, limit the inputs' width
+        if ((inputWidth > lowerBound) && (inputWidth < upperBound)) {
+            charsAtLowerBound = discountInputElem.value.length; //28
+            discountInputElem.style.setProperty("width", `${lowerBound} px`); //200
+        }
+
+        /*
+            when the input's width reaches the lower bound, the number of characters it contains is stored
+            When the user is deleting content, if the number of characters should fall below this threshold, then set the input element's width back to auto, which will allow "fixed-size: content" to let it grow and shrink based on the number of characters it has
+        */
+
+        if (discountInputElem.value.length < charsAtLowerBound) {
+            discountInputElem.style.setProperty("width", "auto");
+        }
     }
 
-    if (discountInputElem.value.length < charsAtLowerBound) {
-        discountInputElem.style.setProperty("width", "auto");
+    function removePercentOnEmpty() {
+        if (discountInputElem.value === "") {
+            percentageSign.classList.add("display-none");
+            discountInputElem.placeholder = "e.g 25%";
+        } else {
+            percentageSign.classList.remove("display-none");
+        }
     }
-
-    if (discountInputElem.value === "" && e.key === 'Backspace') {
-        percentageSign.classList.add("display-none");
-        discountInputElem.placeholder = "e.g 25%";
-    };
-
     // console.log({ condition1, containerWidth, inputWidth, minValue: lowerBound, maxValue: upperBound, numOfCharsAtWidthCap: charsAtLowerBound });
-});
-
-discountInputElem.addEventListener('keydown', function (e) {
-    percentageSign.classList.remove("display-none");
 });
 
 //!CALCULATE DISCOUNT 
