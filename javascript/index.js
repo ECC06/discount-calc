@@ -106,6 +106,15 @@ discountInputElem.addEventListener('keyup', function (e) {
     // console.log({ condition1, containerWidth, inputWidth, minValue: lowerBound, maxValue: upperBound, numOfCharsAtWidthCap: charsAtLowerBound });
 });
 
+//!
+window.addEventListener('resize', function (e) {
+    if (window.innerWidth >= 992) {
+        headingAndForm.classList.remove("display-none");
+    } else {
+        headingAndForm.classList.add("display-none");
+    }
+});
+
 //!CALCULATE DISCOUNT 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -152,10 +161,8 @@ form.addEventListener("submit", function (e) {
         if (window.innerWidth < 992) {
             headingAndForm.classList.add("display-none");
             outputCont.classList.remove("display-none");
-        } else {
-            noCalculationsCont.classList.add("display-none");
         }
-
+        noCalculationsCont.classList.add("display-none");
         calculationOutput.classList.remove("display-none");
 
     }

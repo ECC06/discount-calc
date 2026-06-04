@@ -380,6 +380,13 @@ main button,
     display: none;
 }
 
+/* psls */
+#calculation-output {
+    display: grid;
+    align-content: space-between;
+    height: 100%;
+}
+
 #number-conts {
     display: grid;
     gap: 28px;
@@ -387,7 +394,7 @@ main button,
 
 .number-cont {
     border-radius: 12px;
-    padding: 16px;
+    padding: 20px;
 }
 
 .number-cont {
@@ -395,7 +402,7 @@ main button,
 }
 
 .number-cont h3 {
-    font-size: var(--font-size-16);
+    font-size: 18px;
     font-weight: var(--medium);
     color: var(--main-orange);
 }
@@ -403,7 +410,7 @@ main button,
 .number-cont p {
     display: flex;
     gap: 2px;
-    font-size: var(--font-size-36);
+    font-size: var(--font-size-40);
     font-weight: var(--semi-bold);
 }
 
