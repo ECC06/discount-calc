@@ -4,7 +4,6 @@ const historyBtn = document.getElementById("history-btn");
 
 const headingAndForm = document.getElementById("heading-and-form");
 const form = document.getElementsByTagName("form")[0];
-const currencySignsList = document.querySelectorAll(".currency-sign");
 const currencyPrefix = document.querySelector("#price-input-cont .currency-sign");
 const percentageSign = document.querySelector("#discount-input + #percent");
 
@@ -252,6 +251,7 @@ currencyDropdown.addEventListener("click", function (e) {
 
         showSelected();
 
+        const currencySignsList = document.querySelectorAll(".currency-sign");
         //update all signs in the ui
         currencySignsList.forEach((sign) => {
             sign.textContent = `${selectedLi.dataset.sign}`;
