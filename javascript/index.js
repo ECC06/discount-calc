@@ -43,20 +43,27 @@ document.addEventListener("DOMContentLoaded", function (e) {
             const { currency, originalPrice, discountPercentage, discount, savings, dateSearched } = obj;
 
             return `
-                < li class="history-item" >
-                <p>${obj.discountPercentage}% off ${currency}${originalPrice}, which is <span class="discount-output">${currency}${discount}</span>
-                </p>
-                <!--e.g 20 % off £29, which is £23.30 -- >
+            <li class="history-item">
+                <div class="wrapper">
+                    <p class="history-numbers-text">
+                        <span>${discountPercentage}% off</span> 
+                        <span>${currency}${originalPrice}</span>, which is 
+                        <span class="discount">${currency}${discount}</span>
+                    </p>
+                    <!-- e.g 20% off £29, which is £23.30 -->
 
-                <p>Searched on: <span class="date-searched">${dateSearched}</span></p>
-                <!--e.g Searched on: 10 / 15 / 2025 -- >
-             </li >`;
+                    <p class="date-searched-text">
+                        Searched on: <span class="date">${dateSearched}</span>
+                    </p>
+                    <!-- e.g Searched on: 10/15/2025 -->
+                </div>
+            </li>`;
         });
+
+        console.log(listElements.join(""));
 
         //update HTML with history
-        historyArr.forEach((obj) => {
-            updateHTMLwithLi(obj);
-        });
+        historyConts.innerHTML = listElements.join("");
 
         showHistoryCont();
     }

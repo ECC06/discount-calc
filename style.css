@@ -165,6 +165,12 @@ main {
     color: white;
 }
 
+@media (min-width: 600px) {
+    main {
+        padding: 100px 24px 24px;
+    }
+}
+
 #history-btn {
     background-color: transparent;
     border: none;
@@ -493,25 +499,50 @@ dialog h2 {
     overflow-y: scroll;
 }
 
+/* psls */
 .history-item {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    column-gap: 28px;
-    row-gap: 8px;
+    display: grid;
+    justify-items: start;
+    align-items: center;
     padding: 16px 12px;
     list-style-type: none;
     background-color: var(--light-grey);
     border-radius: 12px;
+    width: 100%;
 }
 
-.discount-output,
-.date-searched {
-    font-weight: var(--semi-bold);
+.history-item .wrapper {
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    column-gap: 20px;
+    row-gap: 8px;
+    width: 100%;
+}
+
+@media (min-width: 660px) {
+    .history-item {
+        font-size: 14px;
+    }
+
+    .history-item .wrapper {
+        flex-direction: row;
+    }
 }
 
 .discount-output {
+    font-weight: var(--semi-bold);
     color: var(--main-orange);
+}
+
+.history-numbers-text .discount {
+    color: var(--main-orange);
+    font-weight: var(--semi-bold);
+}
+
+.date-searched-text {
+    color: #ffffffb9;
 }
 
 #clear-history-btn {
@@ -532,12 +563,6 @@ dialog h2 {
 }
 
 /* !DESKTOP STYLES */
-
-@media (min-width: 600px) {
-    main {
-        padding: 100px 24px 24px;
-    }
-}
 
 @media (min-width: 992px) {
     main {

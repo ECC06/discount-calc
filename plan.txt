@@ -6,3 +6,71 @@ Write HTML and CSS
 4. Write CSS with layout, size, style
 5. Make responsive
 6. Make interactive
+
+
+[
+    {
+        "currency": "₵",
+        "originalPrice": 140,
+        "discountPercentage": 20,
+        "discount": 112,
+        "savings": 28,
+        "dateSearched": "04/06/2026"
+    },
+    {
+        "currency": "$",
+        "originalPrice": 150,
+        "discountPercentage": 20,
+        "discount": 120,
+        "savings": 30,
+        "dateSearched": "04/06/2026"
+    },
+    {
+        "currency": "€",
+        "originalPrice": 224,
+        "discountPercentage": 25,
+        "discount": 168,
+        "savings": 56,
+        "dateSearched": "04/06/2026"
+    },
+    {
+        "currency": "₵",
+        "originalPrice": 990,
+        "discountPercentage": 20,
+        "discount": 792,
+        "savings": 198,
+        "dateSearched": "04/06/2026"
+    },
+    {
+        "currency": "₵",
+        "originalPrice": 3000,
+        "discountPercentage": 30,
+        "discount": 2100,
+        "savings": 900,
+        "dateSearched": "04/06/2026"
+    },
+    {
+        "currency": "£",
+        "originalPrice": 180,
+        "discountPercentage": 25,
+        "discount": 135,
+        "savings": 45,
+        "dateSearched": "04/06/2026"
+    },
+    {
+        "currency": "£",
+        "originalPrice": 1100,
+        "discountPercentage": 30,
+        "discount": 770,
+        "savings": 330,
+        "dateSearched": "04/06/2026"
+    },
+    {
+        "currency": "£",
+        "originalPrice": 4500,
+        "discountPercentage": 40,
+        "discount": 2700,
+        "savings": 1800,
+        "dateSearched": "04/06/2026"
+    }
+]

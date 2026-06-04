@@ -17,14 +17,21 @@ export function updateHTMLwithLi(historyObj) {
     const { currency, originalPrice, discountPercentage, discount, savings, dateSearched } = historyObj;
 
     const historyItem = `
-        <li class="history-item">
-            <p>${discountPercentage}% off ${currency}${originalPrice}, which is <span class="discount-output">${currency}${discount}</span>
+    <li class="history-item">
+        <div class="wrapper">
+            <p class="history-numbers-text">
+                <span>${discountPercentage}% off</span> 
+                <span>${currency}${originalPrice}</span>, which is 
+                <span class="discount">${currency}${discount}</span>
             </p>
             <!-- e.g 20% off £29, which is £23.30 -->
 
-            <p>Searched on: <span class="date-searched">${dateSearched}</span></p>
+            <p class="date-searched-text">
+                Searched on: <span class="date">${dateSearched}</span>
+            </p>
             <!-- e.g Searched on: 10/15/2025 -->
-        </li>`;
+        </div>
+    </li>`;
 
     //add the content at the beginning
     historyConts.innerHTML = `${historyItem}${historyConts.innerHTML}`;
