@@ -232,7 +232,7 @@ label {
     display: grid;
     grid-template-rows: 0fr;
     overflow: hidden;
-    width: 110px;
+    width: 125px;
     border: none;
     background-color: var(--light-grey);
     border-radius: 12px;
@@ -329,7 +329,7 @@ input[type="number"] {
 
 #discount-input {
     field-sizing: content;
-    min-width: 20px;
+    /* width: 20px; */
     margin-right: 4px;
 }
 
@@ -389,7 +389,7 @@ main button,
 
 .number-cont h3 {
     font-size: var(--font-size-16);
-    font-weight: var(--regular);
+    font-weight: var(--semi-bold);
     color: var(--main-orange);
 }
 
@@ -439,6 +439,10 @@ body:has(dialog:open)::before {
     border: none;
 }
 
+#close-modal-btn > .desktop {
+    display: none;
+}
+
 #history-wrapper {
     position: relative;
     top: 50%;
@@ -449,7 +453,7 @@ body:has(dialog:open)::before {
 #no-history-cont img {
     display: block;
     margin: auto;
-    width: min(200px, 60%);
+    width: min(300px, 90%);
 }
 
 #no-history-cont h2 {
@@ -480,9 +484,10 @@ dialog h2 {
 }
 
 #history-containers {
-    display: grid;
-    align-items: start;
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 16px;
     height: 290px;
     overflow-y: scroll;
 }
@@ -665,6 +670,14 @@ dialog h2 {
         right: 14px;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
+    }
+
+    #close-modal-btn > .mobile {
+        display: none;
+    }
+
+    #close-modal-btn > .desktop {
+        display: block;
     }
 
     #close-modal-btn:hover {

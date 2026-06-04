@@ -13,28 +13,18 @@ export function showHistoryCont() {
 }
 
 export function updateHistoryInHTML(historyObj) {
-    const historyArr = getHistoryFromLocalStorage();
+
     const { currency, originalPrice, discountPercentage, discount, savings, dateSearched } = historyObj;
 
-    if (historyArr.length > 0) {
+    const historyItem = `
+        <li class="history-item">
+            <p>${discountPercentage}% off ${currency}${originalPrice}, which is <span class="discount-output">${currency}${discount}</span>
+            </p>
+            <!-- e.g 20% off £29, which is £23.30 -->
 
-        const HTMLstrings = historyArr.map((obj) => {
-            return `
-                    <li class="history-item">
-                        <p>${discountPercentage}% off ${currency}${originalPrice}, which is <span class="discount-output">${currency}${discount}</span>
-                        </p>
-                        <!-- e.g 20% off £29, which is £23.30 -->
+            <p>Searched on: <span class="date-searched">${dateSearched}</span></p>
+            <!-- e.g Searched on: 10/15/2025 -->
+        </li>`;
 
-                        <p>Searched on: <span class="date-searched">${dateSearched}</span></p>
-                        <!-- e.g Searched on: 10/15/2025 -->
-                </li>
-                `
-            /*
-            
-                
-            */
-        });
-
-        historyConts.innerHTML = HTMLstrings.join("");
-    }
+    historyConts.innerHTML = historyConts.innerHTML + historyItem;
 }

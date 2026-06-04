@@ -5,6 +5,9 @@ const historyBtn = document.getElementById("history-btn");
 const headingAndForm = document.getElementById("heading-and-form");
 const form = document.getElementsByTagName("form")[0];
 const currencySignsList = document.querySelectorAll(".currency-sign");
+const currencySign = document.querySelector("#price-input-cont .currency-sign");
+const percentageSign = document.querySelector("#discount-input + #percent");
+
 
 const dropdownBtn = document.getElementById("dropdown-btn");
 const currencyDropdown = document.getElementById("currency-dropdown");
@@ -26,18 +29,33 @@ const historyModal = document.getElementById("history-modal");
 const closeModalBtn = document.getElementById("close-modal-btn");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
-let selectedCurrency = currencyDropdown.value || "£";
+
+const dropdownLi = document.querySelector(".dropdown-li");
+let selectedCurrency = dropdownLi.dataset.sign;
 
 let charsAtLowerBound;
 
-//!UPDATE HISTORY MODAL'S HTML IF THERE'S HISTORY IN LOCAL STORAGE
+// //!UPDATE HISTORY MODAL'S HTML IF THERE'S HISTORY IN LOCAL STORAGE
 document.addEventListener("DOMContentLoaded", function (e) {
     if (getHistoryFromLocalStorage() !== null) {
         const historyArr = getHistoryFromLocalStorage();
+        const listElements = historyArr.map((obj) => {
+            const { currency, originalPrice, discountPercentage, discount, savings, dateSearched } = obj;
+
+            return `
+                < li class="history-item" >
+                <p>${obj.discountPercentage}% off ${currency}${originalPrice}, which is <span class="discount-output">${currency}${discount}</span>
+                </p>
+                <!--e.g 20 % off £29, which is £23.30 -- >
+
+                <p>Searched on: <span class="date-searched">${dateSearched}</span></p>
+                <!--e.g Searched on: 10 / 15 / 2025 -- >
+             </li >`;
+        });
 
         //update HTML with history
         historyArr.forEach((obj) => {
-            updateHistoryInHTML(obj)
+            updateHistoryInHTML(obj);
         });
 
         showHistoryCont();
@@ -45,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 });
 
 //!LIMITS THE LENGTH OF THE DISCOUNT INPUT BOX (because it's set to fixed-size: content in css)
-discountInputElem.addEventListener('keyup', function () {
+discountInputElem.addEventListener('keyup', function (e) {
     const containerWidth = discountInputCont.getBoundingClientRect().width;
     const inputWidth = discountInputElem.getBoundingClientRect().width;
     const lowerBound = ((80 / 100) * containerWidth).toFixed(2);
@@ -53,15 +71,24 @@ discountInputElem.addEventListener('keyup', function () {
 
     // 
     if ((inputWidth > lowerBound) && (inputWidth < upperBound)) {
-        charsAtLowerBound = discountInputElem.value.length;
-        discountInputElem.style.setProperty("width", `${lowerBound}px`);
+        charsAtLowerBound = discountInputElem.value.length; //28
+        discountInputElem.style.setProperty("width", `${lowerBound} px`); //200
     }
 
     if (discountInputElem.value.length < charsAtLowerBound) {
         discountInputElem.style.setProperty("width", "auto");
     }
+    f
+    if (discountInputElem.value === "" && e.key === 'Backspace') {
+        percentageSign.classList.add("display-none");
+        discountInputElem.placeholder = "e.g 25%";
+    };
 
     // console.log({ condition1, containerWidth, inputWidth, minValue: lowerBound, maxValue: upperBound, numOfCharsAtWidthCap: charsAtLowerBound });
+});
+
+discountInputElem.addEventListener('keydown', function (e) {
+    percentageSign.classList.remove("display-none");
 });
 
 //!CALCULATE DISCOUNT 
@@ -127,16 +154,42 @@ form.addEventListener("submit", function (e) {
     }
 });
 
-//!DISPLAY THE CURRENCY AND THE PERCENTAGE SIGN WHEN THE USER FOCUSES IN ON THE INPUT
+const clearPlaceHolder = function () {
+    if (discountInputElem.value === "") {
+        discountInputElem.placeholder = "";
+    }
+}
+
+//!DISPLAY THE CURRENCY SIGN, PERCENTAGE SIGN AND PLACEHOLDER WHEN THE USER FOCUSES IN ON THE CORRESPONDING INPUT
 form.addEventListener("focusin", function (e) {
     if (e.target.id === "price-input") {
-        const currencySign = document.querySelector("#price-input-cont .currency-sign");
         currencySign.classList.remove("display-none");
+        e.target.placeholder = "";
     } else if (e.target.id === "discount-input") {
-        const percentageSign = document.querySelector("#discount-input + #percent");
-        percentageSign.classList.remove("display-none");
+        percentageSign.classList.remove("display-none")
+        clearPlaceHolder();
     }
-})
+});
+
+document.querySelector("main").addEventListener("click", function (e) {
+    if (e.target.id === "discount-input-cont") {
+        discountInputElem.focus();
+    }
+});
+
+//!REMOVE THE CURRENCY SIGN, PERCENTAGE SIGN AND PLACEHOLDER WHEN THE USER FOCUSES IN ON THE CORRESPONDING INPUT
+form.addEventListener("focusout", function (e) {
+    if (e.target.id === "price-input") {
+        priceInputElem.placeholder = `e.g ${selectedCurrency} 150`;
+    } else if (e.target.id === "discount-input") {
+        discountInputElem.placeholder = "e.g 25%";
+
+        if (discountInputElem.value === "") {
+            percentageSign.classList.add("display-none");
+        };
+    }
+});
+
 
 //!HIDE THE OUTPUT WINDOW WHEN USER CLEARS INPUT
 clearInputBtn.addEventListener("click", function (e) {
@@ -161,13 +214,14 @@ currencyDropdown.addEventListener("click", function (e) {
 
     if (e.target.className === "dropdown-li") {
         selectedLi = e.target;
-        selectedCurrency = selectedLi;
+        selectedCurrency = selectedLi.dataset.sign;
+        priceInputElem.placeholder = `e.g ${selectedCurrency} 150`;
 
         showSelected();
 
         //update all signs in the ui
         currencySignsList.forEach((sign) => {
-            sign.textContent = `(${selectedLi.dataset.sign})`;
+            sign.textContent = `${selectedLi.dataset.sign} `;
         });
     }
 
@@ -201,10 +255,15 @@ closeModalBtn.addEventListener("click", function (e) {
 
 //!CLEAR HISTORY
 clearHistoryBtn.addEventListener("click", function (e) {
-    localStorage.clear();
-    historyConts.innerHTML = "";
+    const confirmClear = confirm("Are you sure you want to clear your history?");
 
-    //hide default window
-    noHistoryCont.classList.remove("display-none");
-    historyCont.classList.add("display-none");
+    if (confirmClear === true) {
+        localStorage.clear();
+        historyConts.innerHTML = "";
+
+        //hide default window
+        noHistoryCont.classList.remove("display-none");
+        historyCont.classList.add("display-none");
+    }
+
 });
