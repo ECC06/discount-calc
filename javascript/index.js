@@ -5,7 +5,7 @@ const historyBtn = document.getElementById("history-btn");
 const headingAndForm = document.getElementById("heading-and-form");
 const form = document.getElementsByTagName("form")[0];
 const currencySignsList = document.querySelectorAll(".currency-sign");
-const currencySign = document.querySelector("#price-input-cont .currency-sign");
+const currencyPrefix = document.querySelector("#price-input-cont .currency-sign");
 const percentageSign = document.querySelector("#discount-input + #percent");
 
 
@@ -78,7 +78,7 @@ discountInputElem.addEventListener('keyup', function (e) {
     if (discountInputElem.value.length < charsAtLowerBound) {
         discountInputElem.style.setProperty("width", "auto");
     }
-    f
+
     if (discountInputElem.value === "" && e.key === 'Backspace') {
         percentageSign.classList.add("display-none");
         discountInputElem.placeholder = "e.g 25%";
@@ -163,7 +163,7 @@ const clearPlaceHolder = function () {
 //!DISPLAY THE CURRENCY SIGN, PERCENTAGE SIGN AND PLACEHOLDER WHEN THE USER FOCUSES IN ON THE CORRESPONDING INPUT
 form.addEventListener("focusin", function (e) {
     if (e.target.id === "price-input") {
-        currencySign.classList.remove("display-none");
+        currencyPrefix.classList.remove("display-none");
         e.target.placeholder = "";
     } else if (e.target.id === "discount-input") {
         percentageSign.classList.remove("display-none")
@@ -181,7 +181,13 @@ document.querySelector("main").addEventListener("click", function (e) {
 form.addEventListener("focusout", function (e) {
     if (e.target.id === "price-input") {
         priceInputElem.placeholder = `e.g ${selectedCurrency} 150`;
-    } else if (e.target.id === "discount-input") {
+
+        if (priceInputElem.value === "") {
+            currencyPrefix.classList.add("display-none");
+        }
+    }
+
+    if (e.target.id === "discount-input") {
         discountInputElem.placeholder = "e.g 25%";
 
         if (discountInputElem.value === "") {
@@ -193,7 +199,15 @@ form.addEventListener("focusout", function (e) {
 
 //!HIDE THE OUTPUT WINDOW WHEN USER CLEARS INPUT
 clearInputBtn.addEventListener("click", function (e) {
+
     showDefaultState();
+    clearInputPrefixes();
+
+    function clearInputPrefixes() {
+        currencyPrefix.classList.add("display-none");
+        percentageSign.classList.add("display-none");
+    }
+
 
     function showDefaultState() {
         if (window.innerWidth >= 992) {
@@ -201,6 +215,8 @@ clearInputBtn.addEventListener("click", function (e) {
             noCalculationsCont.classList.remove("display-none");
         }
     }
+
+
 });
 
 //!OPEN THE CURRENCY DROPDOWN

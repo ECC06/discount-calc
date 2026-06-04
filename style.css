@@ -647,6 +647,7 @@ dialog h2 {
         margin-top: 12px;
         text-align: center;
         font-size: var(--font-size-28);
+        text-wrap: nowrap;
     }
 
     #calculation-output {
