@@ -512,7 +512,6 @@ dialog h2 {
 }
 
 .history-item .wrapper {
-    border: 1px solid white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
