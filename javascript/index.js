@@ -1,4 +1,4 @@
-import { getHistoryFromLocalStorage, updateHistoryInHTML, historyConts, historyCont, showHistoryCont, noHistoryCont } from "./re-used-functions.js";
+import { getHistoryFromLocalStorage, updateHTMLwithLi, historyConts, historyCont, showHistoryCont, noHistoryCont } from "./re-used-functions.js";
 
 const historyBtn = document.getElementById("history-btn");
 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         //update HTML with history
         historyArr.forEach((obj) => {
-            updateHistoryInHTML(obj);
+            updateHTMLwithLi(obj);
         });
 
         showHistoryCont();
@@ -117,7 +117,7 @@ form.addEventListener("submit", function (e) {
 
     showResult(discount, savings);
     storeHistory();
-    updateHistoryInHTML(historyInfo);
+    updateHTMLwithLi(historyInfo);
     showHistoryCont();
 
     function calculateDiscountAndSavings() {

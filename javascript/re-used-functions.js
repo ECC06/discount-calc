@@ -12,7 +12,7 @@ export function showHistoryCont() {
     historyCont.classList.remove("display-none");
 }
 
-export function updateHistoryInHTML(historyObj) {
+export function updateHTMLwithLi(historyObj) {
 
     const { currency, originalPrice, discountPercentage, discount, savings, dateSearched } = historyObj;
 
@@ -26,5 +26,6 @@ export function updateHistoryInHTML(historyObj) {
             <!-- e.g Searched on: 10/15/2025 -->
         </li>`;
 
-    historyConts.innerHTML = historyConts.innerHTML + historyItem;
+    //add the content at the beginning
+    historyConts.innerHTML = `${historyItem}${historyConts.innerHTML}`;
 }
