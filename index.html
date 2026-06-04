@@ -37,7 +37,7 @@
                             <div id="trigger-and-dropdown">
                                 <button id="dropdown-btn" type="button">
                                     <div>
-                                        <span>(<span class="currency-sign">£</span>)</span>
+                                        <span>(<span class="currency-sign">₵</span>)</span>
                                         <span class="change-text">Change</span>
                                     </div>
 
@@ -58,7 +58,11 @@
                                 </button>
                                 <ul id="currency-dropdown">
                                     <div id="dropdown-wrapper">
-                                        <li data-sign="£" class="dropdown-li selected">
+                                        <li data-sign="₵" class="dropdown-li selected">
+                                            <span>₵</span>
+                                            <span class="fi fi-gh"></span>
+                                        </li>
+                                        <li data-sign="£" class="dropdown-li">
                                             <span>£</span>
                                             <span class="fi fi-gb"></span>
                                         </li>
@@ -77,11 +81,6 @@
                                             <span>₦</span>
                                             <span class="fi fi-ng"></span>
                                         </li>
-
-                                        <li data-sign="₵" class="dropdown-li">
-                                            <span>₵</span>
-                                            <span class="fi fi-gh"></span>
-                                        </li>
                                     </div>
                                 </ul>
                             </div>
@@ -90,8 +89,8 @@
 
                         <!-- input -->
                         <div id="price-input-cont" class="input-cont">
-                            <span class="currency-sign display-none">£</span>
-                            <input required id="price-input" type="number" step="any" placeholder="e.g £150">
+                            <span class="currency-sign display-none">₵</span>
+                            <input required id="price-input" type="number" step="any" placeholder="e.g ₵150">
                         </div>
                     </div>
 

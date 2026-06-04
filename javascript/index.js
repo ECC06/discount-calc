@@ -178,6 +178,7 @@ form.addEventListener("focusin", function (e) {
     }
 });
 
+//!ALLOW USER TO FOCUS WHEN THEY CLICK ON #discount-input-cont (because the </input> inside doesn't take it's full width)
 document.querySelector("main").addEventListener("click", function (e) {
     if (e.target.id === "discount-input-cont") {
         discountInputElem.focus();
@@ -244,7 +245,7 @@ currencyDropdown.addEventListener("click", function (e) {
 
         //update all signs in the ui
         currencySignsList.forEach((sign) => {
-            sign.textContent = `${selectedLi.dataset.sign} `;
+            sign.textContent = `${selectedLi.dataset.sign}`;
         });
     }
 
