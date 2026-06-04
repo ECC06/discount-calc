@@ -148,6 +148,7 @@ body,
 button,
 input {
     font-family: "Poppins", Arial, Helvetica, sans-serif;
+    letter-spacing: 0.4px;
 }
 
 /* !MOBILE STYLES */
@@ -389,7 +390,7 @@ main button,
 
 .number-cont h3 {
     font-size: var(--font-size-16);
-    font-weight: var(--semi-bold);
+    font-weight: var(--medium);
     color: var(--main-orange);
 }
 
