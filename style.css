@@ -381,7 +381,7 @@ main button,
 }
 
 /* psls */
-#calculation-output {
+.calculation-output {
     display: grid;
     align-content: space-between;
     height: 100%;
@@ -682,7 +682,8 @@ dialog h2 {
         text-wrap: nowrap;
     }
 
-    #calculation-output {
+    .calculation-output {
+        align-content: center;
         width: 100%;
     }
 

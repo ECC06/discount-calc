@@ -13,7 +13,7 @@ const currencyDropdown = document.getElementById("currency-dropdown");
 
 const outputCont = document.querySelector(".output-cont");
 const noCalculationsCont = document.querySelector(".no-calculations-cont");
-const calculationOutput = document.getElementById("calculation-output");
+const calculationOutput = document.querySelector(".calculation-output");
 
 const priceInputElem = document.getElementById("price-input");
 const discountInputCont = document.getElementById("discount-input-cont");
@@ -58,8 +58,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 </div>
             </li>`;
         });
-
-        console.log(listElements.join(""));
 
         //update HTML with history
         historyConts.innerHTML = listElements.join("");
@@ -108,11 +106,18 @@ discountInputElem.addEventListener('keyup', function (e) {
 
 //!
 window.addEventListener('resize', function (e) {
-    if (window.innerWidth >= 992) {
-        headingAndForm.classList.remove("display-none");
-    } else {
-        headingAndForm.classList.add("display-none");
+    const hideForm = () => headingAndForm.classList.add("display-none");
+    const showForm = () => headingAndForm.classList.remove("display-none");
+
+    //if output container is shown
+    if (!outputCont.classList.contains("display-none")) {
+        if (window.innerWidth < 992) {
+            hideForm();
+        } else {
+            showForm();
+        }
     }
+
 });
 
 //!CALCULATE DISCOUNT 
